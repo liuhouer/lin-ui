@@ -30,23 +30,25 @@ select VERSION in patch minor major "Specific Version"
         fi
         # bump version
         npm version $VERSION
-        NEW_VERSION=$(node -p "require('../package.json').version")
-        echo Releasing ${NEW_VERSION} ...
+        NEW_VERSION=$(node -p "require('./package.json').version")
 
         # npm release
+        npm publish
+
+        echo Releasing ${NEW_VERSION} ...
 
         echo "✅ Released to npm."
 
         # github release
         git add -A
         git commit -m "release v${NEW_VERSION}"
-        git push
+        git origin master
         git push origin refs/tags/v${NEW_VERSION}
 
         # async develop
-        git checkout dev
+        git checkout develop
         git rebase master
-        git push origin dev
+        git push origin develop
 
         echo "✅ Released to Github."
       else

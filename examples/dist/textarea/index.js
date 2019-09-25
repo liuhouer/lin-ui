@@ -5,8 +5,8 @@ Component({
   /**
    * 组件的属性列表
    */
-  behaviors: ['wx://form-field',rules],
-  externalClasses: ['l-class','l-error-text','l-error-text-class'],
+  behaviors: ['wx://form-field', rules],
+  externalClasses: ['l-class', 'l-error-text', 'l-error-text-class'],
   properties: {
     // 占位文本
     placeholder: {
@@ -77,25 +77,22 @@ Component({
     handleInputChange(event) {
       const { detail = {} } = event;
       const { value = '' } = detail;
- 
+
       this.setData({ value });
 
-      this.triggerEvent('linchange', event);
+      this.triggerEvent('linchange', { ...event });
     },
 
     handleInputFocus(event) {
-      this.triggerEvent('linfocus', event);
+      this.triggerEvent('linfocus', { ...event });
     },
 
     handleInputBlur(event) {
-      this.validatorData({value:event.detail.value});
-      this.triggerEvent('linblur', event);
+      this.validatorData({ value: event.detail.value });
+      this.triggerEvent('linblur', { ...event });
     },
     handleInputConfirm(event) {
-      this.triggerEvent('linconfirm', event);
-    },
-    // onClearTap(e) {
-    //   this.setData({ value: '' })
-    // },
+      this.triggerEvent('linconfirm', { ...event });
+    }
   }
 });

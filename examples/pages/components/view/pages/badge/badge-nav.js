@@ -1,6 +1,6 @@
 const badgeNaviConfigs = [{
     title: "数字徽章",
-    count: 96,
+    count: 9,
     content: '',
     maxCount: 99,
     dot: false,
